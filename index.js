@@ -1,7 +1,8 @@
 import express from "express";
-// TODO - Add helmet and cert
+import helmet from "helmet";
 
 const app = express();
+app.use(helmet())
 const PORT = 4000;
 
 // TODO - Fetch quotes from database
