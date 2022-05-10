@@ -1,9 +1,15 @@
 import express from "express";
 import helmet from "helmet";
+import expressBasicAuth from "express-basic-auth";
 
 const app = express();
-app.use(helmet())
 const PORT = 4000;
+
+app.use(helmet());
+app.use(expressBasicAuth({
+    users: { 'admin': '4]Xd]z("(h;G6d%Y/@]W(2kc^3'}
+}));
+
 
 // TODO - Fetch quotes from database
 const mock_db = [
@@ -24,7 +30,6 @@ const getQuote = () => {
     return mock_db[index];
 }
 
-// Add authorization
 app.get('/',(_req,res) =>{
     res.json(getQuote());
 })
