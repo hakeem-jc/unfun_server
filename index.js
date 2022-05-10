@@ -1,13 +1,17 @@
 import express from "express";
 import helmet from "helmet";
 import expressBasicAuth from "express-basic-auth";
+import dotenv from "dotenv";
 
 const app = express();
-const PORT = 4000;
+dotenv.config();
+const PORT = process.env.PORT;
+let auth = {};
+auth[process.env.ADMIN] = process.env.PASSWORD;
 
 app.use(helmet());
 app.use(expressBasicAuth({
-    users: { 'admin': '4]Xd]z("(h;G6d%Y/@]W(2kc^3'}
+    users: auth
 }));
 
 
